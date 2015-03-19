@@ -3,8 +3,6 @@
 html {
   font-size: $root_size;
 }
-h1{font-size: $titulo_size;}
-h2{font-size: $titulo_size * 0.8;}
 @for $i from 1 through 6{
   h#{$i}{
     font-size: $titulo_size - ($i * 0.2);
