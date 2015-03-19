@@ -64,6 +64,6 @@ gulp.task('dist', function() {
         .pipe(gulp.dest(destino+"/js"));
 });
 
-gulp.task('default',['jslint', 'sass', 'dist', 'css','server'], function() {
+gulp.task('default',['jslint', 'sass', 'minify-css', 'dist', 'css','server'], function() {
     gulp.watch(origem+"/**/*", ['jslint', 'sass', 'minify-css', 'dist', 'css']);
 });
