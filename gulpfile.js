@@ -2,7 +2,6 @@
  * Created by Leandro Rolim on 18/03/15.
  */
 
-// Aqui nós carregamos o gulp e os plugins através da função `require` do nodejs
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
@@ -27,7 +26,6 @@ gulp.task('server', function() {
     gulp.src(destino)
         .pipe(server({
             livereload: true,
-            //directoryListing: true,
             open: true,
             defaultFile: "guia.html"
         }));
@@ -43,10 +41,6 @@ gulp.task('sass', function () {
     gulp.src(origem+'/scss/template.scss')
         .pipe(sass())
         .pipe(gulp.dest(destino+'/css'));
-
-  //  gulp.src(destino+'/css/template.css')
-    //    .pipe(rename("css/template.min.css"))
-      //  .pipe(gulp.dest(destino));
 });
 
 gulp.task('minify-css', function() {
