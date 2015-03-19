@@ -1,0 +1,9 @@
+@import "mixins";
+@import "variables";
+
+.container{
+  width: 1280px;
+  .row{
+    margin: 0 15px;
+  }
+}
