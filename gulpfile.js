@@ -25,8 +25,9 @@ gulp.task('server', function() {
     gulp.src(destino)
         .pipe(server({
             livereload: true,
-            directoryListing: true,
-            open: true
+            //directoryListing: true,
+            open: true,
+            defaultFile: "guia.html"
         }));
 });
 
@@ -50,6 +51,6 @@ gulp.task('dist', function() {
         .pipe(gulp.dest(destino+"/js"));
 });
 
-gulp.task('default',['jslint', 'sass', 'dist', 'css'], function() {
+gulp.task('default',['jslint', 'sass', 'dist', 'css','server'], function() {
     gulp.watch(origem+"/**/*", ['jslint', 'sass', 'dist', 'css']);
 });
