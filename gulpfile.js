@@ -12,9 +12,35 @@ var server = require('gulp-server-livereload');
 var csslint = require('gulp-csslint');
 var minifyCSS = require('gulp-minify-css');
 
+//otimizadores de imagens
+var imagemin = require('gulp-imagemin');
+var jpegtran = require('imagemin-jpegtran');
+var optipng = require('imagemin-optipng');
 
 var origem = "./src";
 var destino = "./dist";
+
+gulp.task('imagemin', function () {
+    return gulp.src(origem+'/img/*.png')
+        .pipe(imagemin({
+            use: [optipng()]
+        }))
+        .pipe(gulp.dest(destino+'/img'));
+});
+
+gulp.task('optimizer-jpg', function () {
+    return gulp.src(origem+'/img/*.jpg')
+        .pipe(jpegtran({progressive: true})())
+        .pipe(gulp.dest(destino+'/img'));
+});
+
+gulp.task('optimizer-png', function () {
+    return gulp.src(origem+'/img/*.png')
+        .pipe(optipng({optimizationLevel: 3})())
+        .pipe(gulp.dest(destino+'/img'));
+});
+
+gulp.task('optimizer-img', ['optimizer-jpg', 'imagemin']);
 
 gulp.task('css', function() {
     gulp.src(destino+'/**/*.css')
