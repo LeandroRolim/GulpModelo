@@ -1,5 +1,12 @@
 @import "variables";
 
+* {
+  margin: 0;
+  color: $cor_padrao;
+  padding: 0;
+
+}
+
 html {
   font-size: $root_size;
 }
