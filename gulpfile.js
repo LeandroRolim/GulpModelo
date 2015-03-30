@@ -8,9 +8,10 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
-var server = require('gulp-server-livereload');
 var csslint = require('gulp-csslint');
 var minifyCSS = require('gulp-minify-css');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 
 //otimizadores de imagens
 var imagemin = require('gulp-imagemin');
@@ -48,13 +49,15 @@ gulp.task('css', function() {
         .pipe(csslint.reporter());
 });
 
-gulp.task('server', function() {
-    gulp.src(destino)
-        .pipe(server({
-            livereload: true,
-            open: true,
-            defaultFile: "guia.html"
-        }));
+gulp.task('server', ['sass'], function() {
+
+    browserSync({
+        server: destino,
+        files: "guia.html"
+    });
+
+    gulp.watch(origem+"/scss/*.scss", ['sass']);
+    gulp.watch(destino+"/**/*").on('change', reload);
 });
 
 gulp.task('jslint', function() {
