@@ -53,7 +53,7 @@ gulp.task('server', ['sass'], function() {
 
     browserSync({
         server: destino,
-        files: "guia.html"
+        index: "guia.html"
     });
 
     gulp.watch(origem+"/scss/*.scss", ['sass']);
